@@ -1,6 +1,6 @@
 # CoE News Center Graphics
 
-This is the repository for the News Center Graphics team. As of this writing (Jan 2018), the repository only contains CoE's AI2HTML and yet may house other graphics or animations as we develop them for the News Center.
+This is the repository for the News Center Graphics team. As of this writing (Jan 2018), the repository only contains ai2html and yet may house other graphics or animations as we develop them for the News Center.
 
 ## ai2html
 
@@ -25,7 +25,7 @@ Move the `ai2html.js` file into the Illustrator folder where scripts are located
   * Make sure your document is saved.
   * Use Opens Regular or Bold for labels.
 2. Run the script by choosing: File > Scripts > ai2html
-3. Go to the folder containing your Illustrator file. Inside will be a folder called embed. Open the html files in your browser to preview your output.
+3. Go to the folder containing your Illustrator file. Inside will be a folder called embed. Open the html files in your browser to preview your output. This is a partial so it will need `html`, `body`, etc tags for it to be semantically correct.
 
 Currently, we are making heavy use of some custom settings. For example, `ai2html-html`. That will insert html needed for the embed to work properly. Here's an example:
 ```
@@ -35,7 +35,9 @@ ai2html-html
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js"></script>
 ```
 
-For more in-depth instructions and information on the various settings, go [here](http://ai2html.org/#how-to-use-ai2html). The Illustrator document in the example embed also has custom settings that can be used as a template. For some proof-of-concepts in our News Center, several appear on [this page](https://newsdev.engin.umich.edu/features/internal-feature-test/).
+For more in-depth instructions and information on the various settings, go [here](http://ai2html.org/#how-to-use-ai2html). The Illustrator document in the example embed also has custom settings that can be used as a template. Note that there are four artboards. Those (loosely) correspond to the breakpoints in the News Center. They may work in the department and college sites, but that has not been tested.
+
+For some proof-of-concepts in our News Center, several appear on [this page](https://newsdev.engin.umich.edu/features/internal-feature-test/).
 
 ## Haiku animations
 
