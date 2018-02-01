@@ -10,7 +10,7 @@ ai2html is an open-source script for Adobe Illustrator originally developed by T
 
 Download the latest version of the script called `ai2html.js` and saving the file to your computer. This version of the script contains a custom font array with the fonts that we use in the News Center. When updating to the latest script pulled from [here](https://github.com/newsdev/ai2html), be sure to preserve the custom array starting from line 309.
 
-Move the `ai2html.js` file into the Illustrator folder where scripts are located. For example, on a Mac running Adobe Illustrator CC 2015, the path would be:
+Move the `ai2html.js` file into the Illustrator folder where scripts are located. For example, on a Mac running Adobe Illustrator CC 201x, the path would be:
 
 ```
 /Applications/Adobe Illustrator CC 2018/Presets/en_US/Scripts/ai2html.js
@@ -41,7 +41,7 @@ For some proof-of-concepts in our News Center, several appear on [this page](htt
 
 ## Haiku animations
 
-[TK TK TK TK](https://www.haiku.ai/) 
+Tentatively testing this. It may end up being something else. [TK TK TK TK](https://www.haiku.ai/) 
 
 ## License
 
