@@ -52,3 +52,6 @@ Temporary Items
 *.msi
 *.msm
 *.msp
+
+# AI files
+*.ai
