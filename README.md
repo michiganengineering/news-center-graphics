@@ -23,11 +23,11 @@ Move the `ai2html.js` file into the Illustrator folder where scripts are located
   * Size the artboard to the dimensions that you want the div to appear on the web page.
   * Make sure your Document Color Mode is set to RGB.
   * Make sure your document is saved.
-  * Use Opens Regular or Bold for labels.
+  * Use Open San Regular or Open Sans Bold for labels.
 2. Run the script by choosing: File > Scripts > ai2html
 3. Go to the folder containing your Illustrator file. Inside will be a folder called embed. Open the html files in your browser to preview your output. This is a partial so it will need `html`, `body`, etc tags for it to be semantically correct.
 
-Currently, we are making heavy use of some custom settings. For example, `ai2html-html`. That will insert html needed for the embed to work properly. Here's an example:
+Currently, we are making heavy use of custom settings. For example, using the `ai2html-html` setting will insert custom html at the end of the document. Here's an example where we insert some scripts needed to display the iframe embeds properly:
 ```
 ai2html-html
 <div <%=caption_class%>><%=credit%></div>
