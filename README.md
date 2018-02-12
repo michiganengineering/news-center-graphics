@@ -25,7 +25,7 @@ Move the `ai2html.js` file into the Illustrator folder where scripts are located
   * Make sure your document is saved.
   * Use Open San Regular or Open Sans Bold for labels.
 2. Run the script by choosing: File > Scripts > ai2html
-3. Go to the folder containing your Illustrator file. Inside will be a folder called embed. Open the html files in your browser to preview your output. This is a partial so it will need `html`, `body`, etc tags for it to be semantically correct.
+3. Go to the folder containing your Illustrator file. Inside will be a folder called `embed`. Open the html files in your browser to preview your output. This is a partial so it will need `html`, `body`, etc. for it to be semantically correct.
 
 Currently, we are making heavy use of custom settings. For example, using the `ai2html-html` setting will insert custom html at the end of the document. Here's an example where we insert some scripts needed to display the iframe embeds properly:
 ```
@@ -37,7 +37,7 @@ ai2html-html
 
 For more in-depth instructions and information on the various settings, go [here](http://ai2html.org/#how-to-use-ai2html). The Illustrator document in the example embed also has custom settings that can be used as a template. Note that there are four artboards. Those (loosely) correspond to the breakpoints in the News Center. They may work in the department and college sites, but that has not been tested.
 
-For some proof-of-concepts in our News Center, several appear on [this page](https://newsdev.engin.umich.edu/features/internal-feature-test/).
+For some proof-of-concepts in our News Center, several appear in [this page](https://newsdev.engin.umich.edu/features/internal-feature-test/).
 
 ## Haiku animations
 
