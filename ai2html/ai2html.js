@@ -3446,7 +3446,7 @@ var fonts = [
         html += "\r</div>\r";
 
         // CSS
-        css = "<style type='text/css' media='screen,print'>\r" +
+        css = "<style type='text/css' media='screen,print'>\r@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700,800');\r" +
             generatePageCss(containerId, settings) +
             content.css +
             "\r</style>\r" + responsiveCss;
