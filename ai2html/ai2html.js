@@ -157,7 +157,7 @@ function main() {
         scoop_username: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         scoop_slug: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         scoop_external_edit_key: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
-        alttext: {defaultValue: "alt text here", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: ""}                                         
+        alt_text: {defaultValue: "alt text here", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: ""}                                         
     };
 
     // End of settings blocks copied from Google Spreadsheet.
@@ -2863,7 +2863,7 @@ var fonts = [
             src = settings.image_source_path + imgFile,
             html;
 
-        html = '\t\t<img id="' + imgId + '" class="' + imgClass + '" alt="' + settings.alttext + '" ';
+        html = '\t\t<img id="' + imgId + '" class="' + imgClass + '" alt="' + settings.alt_text + '" ';
         if (isTrue(settings.use_lazy_loader)) {
             html += ' data-src="' + src + '"';
             // spaceholder while image loads
