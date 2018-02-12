@@ -46,9 +46,3 @@ Tentatively testing this. It may end up being something else. [TK TK TK TK](http
 ## License
 
 TK TK TK
-
-## TODOS
-
-* ai2html: automate the creation and compilation of the index page, insert proper paths, proper scripts, and the HTML partial generated from the AI file.
-* ai2html: add embed code generator
-* ai2html: maybe other sharing options?
