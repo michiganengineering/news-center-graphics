@@ -324,8 +324,9 @@ function main() {
         iframeHeaderPartial += "font-family: 'Open Sans', arial, helvetica, sans-serif;\r";
         iframeHeaderPartial += "}\r";
         iframeHeaderPartial += "</style>\r";
-
         iframeHeaderPartial += "</head>\r";
+        iframeHeaderPartial += "<script type='text/javascript' src='../../js/resizer-script.js'></script>\r";
+        iframeHeaderPartial += "<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js'></script>\r";
         iframeHeaderPartial += "<body>\r";
 
         var iframeFooterPartial = "";
