@@ -9,7 +9,7 @@ function main() {
 
     // Increment final digit for bug fixes, middle digit for new functionality.
     // Remember to add an entry in CHANGELOG when updating the version number.
-    var scriptVersion = "0.66.4";
+    var scriptVersion = "0.66.4-coe-customized-v2";
 
     // ai2html is a script for Adobe Illustrator that converts your Illustrator document into html and css.
     // Copyright (c) 2011-2015 The New York Times Company
@@ -157,7 +157,8 @@ function main() {
         scoop_username: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         scoop_slug: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         scoop_external_edit_key: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
-        alt_text: {defaultValue: "alt text here", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: ""}                                         
+        alt_text: {defaultValue: "alt text here", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: ""},
+        embed_as_iframe: { defaultValue: "yes", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "Set this to “no” if you don't want to create a html wrapper with iframe messenger script." },                                        
     };
 
     // End of settings blocks copied from Google Spreadsheet.
@@ -301,6 +302,45 @@ function main() {
         ["\u2665", "&hearts;"],
         ["\u2666", "&diams;"]
     ];
+
+    // Partial html for standard iframe template
+
+    function addIframeHtml(position) {
+
+
+        var iframeHeaderPartial = "";
+
+        iframeHeaderPartial += "<!doctype html>\r";
+        iframeHeaderPartial += "<html lang='en'>\r";
+        iframeHeaderPartial += "<head>\r";
+        iframeHeaderPartial += "<meta name='viewport' content='width=device-width, initial-scale=1'>\r";
+
+        // zero margin and padding for iframe html
+        iframeHeaderPartial += "<style type='text/css' media='screen,print'>\r"
+        iframeHeaderPartial += "html, body {\r";
+        iframeHeaderPartial += "\tpadding:0;\r";
+        iframeHeaderPartial += "\tmargin:0;\r";
+        iframeHeaderPartial += "\t-webkit-font-smoothing:antialiased;\r";
+        iframeHeaderPartial += "font-family: 'Open Sans', arial, helvetica, sans-serif;\r";
+        iframeHeaderPartial += "}\r";
+        iframeHeaderPartial += "</style>\r";
+
+        iframeHeaderPartial += "</head>\r";
+        iframeHeaderPartial += "<body>\r";
+
+        var iframeFooterPartial = "";
+        iframeFooterPartial = "<script type='text/javascript' src='../../js/resizer-script.js'></script>\r";
+        iframeFooterPartial += "<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js'></script>\r";
+        iframeFooterPartial += "</body>\r";
+        iframeFooterPartial += "</html>\r";
+
+
+        if (position == "header") {
+            return iframeHeaderPartial;
+        } else {
+            return iframeFooterPartial;
+        }
+    }
 
     // Add to the fonts array to make the script work with your own custom fonts.
     // To make it easier to add to this array, use the "fonts" worksheet of this Google Spreadsheet:
@@ -3420,6 +3460,14 @@ var fonts = [
         if (isTrue(settings.include_resizer_script)) {
             responsiveJs = getResizerScript();
             responsiveCss = "";
+        }
+
+        if (isTrue(settings.embed_as_iframe)) {
+            textForFile += addIframeHtml("header");
+        }
+
+        if (isTrue(settings.embed_as_iframe)) {
+            textForFile += addIframeHtml("footer");
         }
 
         // comments
