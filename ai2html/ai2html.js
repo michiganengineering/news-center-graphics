@@ -7,9 +7,7 @@ function main() {
     // See (for example) https://forums.adobe.com/thread/1810764 and
     // http://wwwimages.adobe.com/content/dam/Adobe/en/devnet/pdf/illustrator/scripting/Readme.txt
 
-    // Increment final digit for bug fixes, middle digit for new functionality.
-    // Remember to add an entry in CHANGELOG when updating the version number.
-    var scriptVersion = "0.66.4-coe-customized-v2";
+    var scriptVersion = "0.65.1-coe-customized-v2"; // Increment final digit for bug fixes, middle digit for new functionality
 
     // ai2html is a script for Adobe Illustrator that converts your Illustrator document into html and css.
     // Copyright (c) 2011-2015 The New York Times Company
@@ -59,7 +57,7 @@ function main() {
         ai2html_environment: { defaultValue: scriptEnvironment, includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         settings_version: { defaultValue: scriptVersion, includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         create_promo_image: { defaultValue: "no", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
-        image_format: { defaultValue: ["auto"], includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "array", possibleValues: "jpg, png, png24", notes: "Images will be generated in mulitple formats if multiple formats are listed, separated by commas. The first format will be used in the html. Sometimes this is useful to compare which format will have a smaller file size." },
+        image_format: { defaultValue: ["png"], includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "array", possibleValues: "jpg, png, png24", notes: "Images will be generated in mulitple formats if multiple formats are listed, separated by commas. The first format will be used in the html. Sometimes this is useful to compare which format will have a smaller file size." },
         write_image_files: { defaultValue: "yes", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "Set this to \u201Cno\u201D to skip writing the image files. Generally only use this after you have run the script once with this setting set to \u201Cyes.\u201D" },
         responsiveness: { defaultValue: "fixed", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "fixed, dynamic", notes: "Dynamic responsiveness means ai graphics will scale to fill the container they are placed in." },
         max_width: { defaultValue: "", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "integer", possibleValues: "", notes: "Blank or any positive number in pixels, but do not write \u201Cpx\u201D - blank means artboards will set max size, instead it is written to the config file so that the max width can be applied to the template’s container." },
@@ -111,7 +109,7 @@ function main() {
         ai2html_environment: { defaultValue: scriptEnvironment, includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         settings_version: { defaultValue: scriptVersion, includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         create_promo_image: { defaultValue: "no", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
-        image_format: { defaultValue: ["auto"], includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "array", possibleValues: "jpg, png, png24", notes: "Images will be generated in mulitple formats if multiple formats are listed, separated by commas. The first format will be used in the html. Sometimes this is useful to compare which format will have a smaller file size." },
+        image_format: { defaultValue: ["png"], includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "array", possibleValues: "jpg, png, png24", notes: "Images will be generated in mulitple formats if multiple formats are listed, separated by commas. The first format will be used in the html. Sometimes this is useful to compare which format will have a smaller file size." },
         write_image_files: { defaultValue: "yes", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "Set this to \u201Cno\u201D to skip writing the image files. Generally only use this after you have run the script once with this setting set to \u201Cyes.\u201D" },
         responsiveness: { defaultValue: "fixed", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "fixed, dynamic", notes: "Dynamic responsiveness means ai graphics will scale to fill the container they are placed in." },
         max_width: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "integer", possibleValues: "", notes: "Blank or any positive number in pixels, but do not write \u201Cpx\u201D - blank means artboards will set max size, the max width is not included in the html stub, instead it is written to the config file so that the max width can be applied to the template’s container." },
@@ -156,8 +154,7 @@ function main() {
         scoop_asset_id: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         scoop_username: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         scoop_slug: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
-        scoop_external_edit_key: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
-        alt_text: {defaultValue: "alt text here", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: ""}                                         
+        scoop_external_edit_key: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" }
     };
 
     // End of settings blocks copied from Google Spreadsheet.
@@ -307,87 +304,443 @@ function main() {
     // https://docs.google.com/spreadsheets/d/13ESQ9ktfkdzFq78FkWLGaZr2s3lNbv2cN25F2pYf5XM/edit?usp=sharing
     // Make a copy of the spreadsheet for yourself.
     // Modify the settings to taste.
-var fonts = [
-  {"aifont":"ArialMT","family":"arial,helvetica,sans-serif","weight":"","style":""},
-  {"aifont":"Arial-BoldMT","family":"arial,helvetica,sans-serif","weight":"bold","style":""},
-  {"aifont":"Arial-ItalicMT","family":"arial,helvetica,sans-serif","weight":"","style":"italic"},
-  {"aifont":"Arial-BoldItalicMT","family":"arial,helvetica,sans-serif","weight":"bold","style":"italic"},
-  {"aifont":"Georgia","family":"georgia,'times new roman',times,serif","weight":"","style":""},
-  {"aifont":"Georgia-Bold","family":"georgia,'times new roman',times,serif","weight":"bold","style":""},
-  {"aifont":"Georgia-Italic","family":"georgia,'times new roman',times,serif","weight":"","style":"italic"},
-  {"aifont":"Georgia-BoldItalic","family":"georgia,'times new roman',times,serif","weight":"bold","style":"italic"},
-  {"aifont":"NYTFranklin-Light","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"300","style":""},
-  {"aifont":"NYTFranklin-Medium","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"500","style":""},
-  {"aifont":"NYTFranklin-SemiBold","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"600","style":""},
-  {"aifont":"NYTFranklin-Semibold","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"600","style":""},
-  {"aifont":"NYTFranklinSemiBold-Regular","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"600","style":""},
-  {"aifont":"NYTFranklin-SemiboldItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"600","style":"italic"},
-  {"aifont":"NYTFranklin-Bold","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"700","style":""},
-  {"aifont":"NYTFranklin-LightItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"300","style":"italic"},
-  {"aifont":"NYTFranklin-MediumItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"500","style":"italic"},
-  {"aifont":"NYTFranklin-BoldItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"700","style":"italic"},
-  {"aifont":"NYTFranklin-ExtraBold","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"800","style":""},
-  {"aifont":"NYTFranklin-ExtraBoldItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"800","style":"italic"},
-  {"aifont":"NYTFranklin-Headline","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"bold","style":""},
-  {"aifont":"NYTFranklin-HeadlineItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"bold","style":"italic"},
-  {"aifont":"NYTCheltenham-ExtraLight","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"200","style":""},
-  {"aifont":"NYTCheltenhamExtLt-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"200","style":""},
-  {"aifont":"NYTCheltenham-Light","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"300","style":""},
-  {"aifont":"NYTCheltenhamLt-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"300","style":""},
-  {"aifont":"NYTCheltenham-LightSC","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"300","style":""},
-  {"aifont":"NYTCheltenham-Book","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"400","style":""},
-  {"aifont":"NYTCheltenhamBook-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"400","style":""},
-  {"aifont":"NYTCheltenham-Wide","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":""},
-  {"aifont":"NYTCheltenhamMedium-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"500","style":""},
-  {"aifont":"NYTCheltenham-Medium","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"500","style":""},
-  {"aifont":"NYTCheltenham-Bold","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"700","style":""},
-  {"aifont":"NYTCheltenham-BoldCond","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"bold","style":""},
-  {"aifont":"NYTCheltenhamCond-BoldXC","family":"nyt-cheltenham-extra-cn-bd,georgia,'times new roman',times,serif","weight":"bold","style":""},
-  {"aifont":"NYTCheltenham-BoldExtraCond","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"bold","style":""},
-  {"aifont":"NYTCheltenham-ExtraBold","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"bold","style":""},
-  {"aifont":"NYTCheltenham-ExtraLightIt","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
-  {"aifont":"NYTCheltenham-ExtraLightItal","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
-  {"aifont":"NYTCheltenham-LightItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
-  {"aifont":"NYTCheltenham-BookItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
-  {"aifont":"NYTCheltenham-WideItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
-  {"aifont":"NYTCheltenham-MediumItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
-  {"aifont":"NYTCheltenham-BoldItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"700","style":"italic"},
-  {"aifont":"NYTCheltenham-ExtraBoldItal","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"bold","style":"italic"},
-  {"aifont":"NYTCheltenham-ExtraBoldItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"bold","style":"italic"},
-  {"aifont":"NYTCheltenhamSH-Regular","family":"nyt-cheltenham-sh,nyt-cheltenham,georgia,'times new roman',times,serif","weight":"400","style":""},
-  {"aifont":"NYTCheltenhamSH-Italic","family":"nyt-cheltenham-sh,nyt-cheltenham,georgia,'times new roman',times,serif","weight":"400","style":"italic"},
-  {"aifont":"NYTCheltenhamSH-Bold","family":"nyt-cheltenham-sh,nyt-cheltenham,georgia,'times new roman',times,serif","weight":"700","style":""},
-  {"aifont":"NYTCheltenhamSH-BoldItalic","family":"nyt-cheltenham-sh,nyt-cheltenham,georgia,'times new roman',times,serif","weight":"700","style":"italic"},
-  {"aifont":"NYTCheltenhamWide-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"500","style":""},
-  {"aifont":"NYTCheltenhamWide-Italic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"500","style":"italic"},
-  {"aifont":"NYTKarnakText-Regular","family":"nyt-karnak-display-130124,georgia,'times new roman',times,serif","weight":"400","style":""},
-  {"aifont":"NYTKarnakDisplay-Regular","family":"nyt-karnak-display-130124,georgia,'times new roman',times,serif","weight":"400","style":""},
-  {"aifont":"NYTStymieLight-Regular","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":""},
-  {"aifont":"NYTStymieMedium-Regular","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"500","style":""},
-  {"aifont":"OpenSans-Regular","family":"'Open Sans',arial,helvetica,sans-serif","weight":"400","style":""},
-  {"aifont":"OpenSans-Semibold","family":"'Open Sans',arial,helvetica,sans-serif","weight":"600","style":""},
-  {"aifont":"OpenSans-Bold","family":"'Open Sans',arial,helvetica,sans-serif","weight":"700","style":""},
-  {"aifont":"OpenSans-Extrabold","family":"'Open Sans',arial,helvetica,sans-serif","weight":"800","style":""},
-  {"aifont":"Noto-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"500","style":""},
-  {"aifont":"StymieNYT-Light","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":""},
-  {"aifont":"StymieNYT-LightPhoenetic","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":""},
-  {"aifont":"StymieNYT-Lightitalic","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":"italic"},
-  {"aifont":"StymieNYT-Medium","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"500","style":""},
-  {"aifont":"StymieNYT-MediumItalic","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"500","style":"italic"},
-  {"aifont":"StymieNYT-Bold","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":""},
-  {"aifont":"StymieNYT-BoldItalic","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":"italic"},
-  {"aifont":"StymieNYT-ExtraBold","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":""},
-  {"aifont":"StymieNYT-ExtraBoldText","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":""},
-  {"aifont":"StymieNYT-ExtraBoldTextItal","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":"italic"},
-  {"aifont":"StymieNYTBlack-Regular","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":""},
-  {"aifont":"StymieBT-ExtraBold","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":""},
-  {"aifont":"Stymie-Thin","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":""},
-  {"aifont":"Stymie-UltraLight","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":""},
-  {"aifont":"NYTMagSans-Regular","family":"'nyt-mag-sans',arial,helvetica,sans-serif","weight":"500","style":""},
-  {"aifont":"NYTMagSans-Bold","family":"'nyt-mag-sans',arial,helvetica,sans-serif","weight":"700","style":""}
-];
+    // var fonts = [
+    //   {"aifont":"ArialMT","family":"arial,helvetica,sans-serif","weight":"","style":""},
+    //   {"aifont":"Arial-BoldMT","family":"arial,helvetica,sans-serif","weight":"bold","style":""},
+    //   {"aifont":"Arial-ItalicMT","family":"arial,helvetica,sans-serif","weight":"","style":"italic"},
+    //   {"aifont":"Arial-BoldItalicMT","family":"arial,helvetica,sans-serif","weight":"bold","style":"italic"},
+    //   {"aifont":"Georgia","family":"georgia,'times new roman',times,serif","weight":"","style":""},
+    //   {"aifont":"Georgia-Bold","family":"georgia,'times new roman',times,serif","weight":"bold","style":""},
+    //   {"aifont":"Georgia-Italic","family":"georgia,'times new roman',times,serif","weight":"","style":"italic"},
+    //   {"aifont":"Georgia-BoldItalic","family":"georgia,'times new roman',times,serif","weight":"bold","style":"italic"},
+    //   {"aifont":"NYTFranklin-Light","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"300","style":""},
+    //   {"aifont":"NYTFranklin-Medium","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"500","style":""},
+    //   {"aifont":"NYTFranklin-SemiBold","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"600","style":""},
+    //   {"aifont":"NYTFranklin-Semibold","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"600","style":""},
+    //   {"aifont":"NYTFranklinSemiBold-Regular","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"600","style":""},
+    //   {"aifont":"NYTFranklin-SemiboldItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"600","style":"italic"},
+    //   {"aifont":"NYTFranklin-Bold","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"700","style":""},
+    //   {"aifont":"NYTFranklin-LightItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"300","style":"italic"},
+    //   {"aifont":"NYTFranklin-MediumItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"500","style":"italic"},
+    //   {"aifont":"NYTFranklin-BoldItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"700","style":"italic"},
+    //   {"aifont":"NYTFranklin-ExtraBold","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"800","style":""},
+    //   {"aifont":"NYTFranklin-ExtraBoldItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"800","style":"italic"},
+    //   {"aifont":"NYTFranklin-Headline","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"bold","style":""},
+    //   {"aifont":"NYTFranklin-HeadlineItalic","family":"nyt-franklin,arial,helvetica,sans-serif","weight":"bold","style":"italic"},
+    //   {"aifont":"NYTCheltenham-ExtraLight","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"200","style":""},
+    //   {"aifont":"NYTCheltenhamExtLt-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"200","style":""},
+    //   {"aifont":"NYTCheltenham-Light","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"300","style":""},
+    //   {"aifont":"NYTCheltenhamLt-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"300","style":""},
+    //   {"aifont":"NYTCheltenham-LightSC","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"300","style":""},
+    //   {"aifont":"NYTCheltenham-Book","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"400","style":""},
+    //   {"aifont":"NYTCheltenhamBook-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"400","style":""},
+    //   {"aifont":"NYTCheltenham-Wide","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":""},
+    //   {"aifont":"NYTCheltenhamMedium-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"500","style":""},
+    //   {"aifont":"NYTCheltenham-Medium","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"500","style":""},
+    //   {"aifont":"NYTCheltenham-Bold","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"700","style":""},
+    //   {"aifont":"NYTCheltenham-BoldCond","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"bold","style":""},
+    //   {"aifont":"NYTCheltenham-BoldExtraCond","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"bold","style":""},
+    //   {"aifont":"NYTCheltenham-ExtraBold","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"bold","style":""},
+    //   {"aifont":"NYTCheltenham-ExtraLightIt","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
+    //   {"aifont":"NYTCheltenham-ExtraLightItal","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
+    //   {"aifont":"NYTCheltenham-LightItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
+    //   {"aifont":"NYTCheltenham-BookItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
+    //   {"aifont":"NYTCheltenham-WideItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
+    //   {"aifont":"NYTCheltenham-MediumItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"","style":"italic"},
+    //   {"aifont":"NYTCheltenham-BoldItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"700","style":"italic"},
+    //   {"aifont":"NYTCheltenham-ExtraBoldItal","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"bold","style":"italic"},
+    //   {"aifont":"NYTCheltenham-ExtraBoldItalic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"bold","style":"italic"},
+    //   {"aifont":"NYTCheltenhamSH-Regular","family":"nyt-cheltenham-sh,nyt-cheltenham,georgia,'times new roman',times,serif","weight":"400","style":""},
+    //   {"aifont":"NYTCheltenhamSH-Italic","family":"nyt-cheltenham-sh,nyt-cheltenham,georgia,'times new roman',times,serif","weight":"400","style":"italic"},
+    //   {"aifont":"NYTCheltenhamSH-Bold","family":"nyt-cheltenham-sh,nyt-cheltenham,georgia,'times new roman',times,serif","weight":"700","style":""},
+    //   {"aifont":"NYTCheltenhamSH-BoldItalic","family":"nyt-cheltenham-sh,nyt-cheltenham,georgia,'times new roman',times,serif","weight":"700","style":"italic"},
+    //   {"aifont":"NYTCheltenhamWide-Regular","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"500","style":""},
+    //   {"aifont":"NYTCheltenhamWide-Italic","family":"nyt-cheltenham,georgia,'times new roman',times,serif","weight":"500","style":"italic"},
+    //   {"aifont":"NYTKarnakText-Regular","family":"nyt-karnak-display-130124,georgia,'times new roman',times,serif","weight":"400","style":""},
+    //   {"aifont":"NYTKarnakDisplay-Regular","family":"nyt-karnak-display-130124,georgia,'times new roman',times,serif","weight":"400","style":""},
+    //   {"aifont":"NYTStymieLight-Regular","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":""},
+    //   {"aifont":"NYTStymieMedium-Regular","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"500","style":""},
+    //   {"aifont":"StymieNYT-Light","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":""},
+    //   {"aifont":"StymieNYT-LightPhoenetic","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":""},
+    //   {"aifont":"StymieNYT-Lightitalic","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":"italic"},
+    //   {"aifont":"StymieNYT-Medium","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"500","style":""},
+    //   {"aifont":"StymieNYT-MediumItalic","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"500","style":"italic"},
+    //   {"aifont":"StymieNYT-Bold","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":""},
+    //   {"aifont":"StymieNYT-BoldItalic","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":"italic"},
+    //   {"aifont":"StymieNYT-ExtraBold","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":""},
+    //   {"aifont":"StymieNYT-ExtraBoldText","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":""},
+    //   {"aifont":"StymieNYT-ExtraBoldTextItal","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":"italic"},
+    //   {"aifont":"StymieNYTBlack-Regular","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":""},
+    //   {"aifont":"StymieBT-ExtraBold","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"700","style":""},
+    //   {"aifont":"Stymie-Thin","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":""},
+    //   {"aifont":"Stymie-UltraLight","family":"nyt-stymie,arial,helvetica,sans-serif","weight":"300","style":""},
+    //   {"aifont":"NYTMagSans-Regular","family":"'nyt-mag-sans',arial,helvetica,sans-serif","weight":"500","style":""},
+    //   {"aifont":"NYTMagSans-Bold","family":"'nyt-mag-sans',arial,helvetica,sans-serif","weight":"700","style":""}
+    // ];
 
-// CSS text-transform equivalents
+    // ----------------------------  Inititialize custom Guardian stuff here ----------------------------------------------
+
+
+    // Guardian base settings block
+
+    var coeBaseSettings = {
+        ai2html_environment: { defaultValue: scriptEnvironment, includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
+        settings_version: { defaultValue: scriptVersion, includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
+        create_promo_image: { defaultValue: "no", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
+        image_format: { defaultValue: ["png"], includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "array", possibleValues: "jpg, png, png24", notes: "Images will be generated in mulitple formats if multiple formats are listed, separated by commas. The first format will be used in the html. Sometimes this is useful to compare which format will have a smaller file size." },
+        write_image_files: { defaultValue: "yes", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "Set this to \u201Cno\u201D to skip writing the image files. Generally only use this after you have run the script once with this setting set to \u201Cyes.\u201D" },
+        responsiveness: { defaultValue: "dynamic", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "fixed, dynamic", notes: "Dynamic responsiveness means ai graphics will scale to fill the container they are placed in." },
+        max_width: { defaultValue: "", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "integer", possibleValues: "", notes: "Blank or any positive number in pixels, but do not write \u201Cpx\u201D - blank means artboards will set max size, the max width is not included in the html stub, instead it is written to the config file so that the max width can be applied to the template’s container." },
+        output: { defaultValue: "one-file", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "one-file, multiple-files", notes: "One html file containing all the artboards or a separate html file for each artboard." },
+        project_name: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "Use this to set a custom project name. The project name is being used in output filenames, class names, etc." },
+        html_output_path: { defaultValue: "/ai2html-output/", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "folderPath", possibleValues: "", notes: "Allows user to change folder to write html files, path should be written relative to ai file location. This is ignored if the project_type in the yml is ai2html." },
+        html_output_extension: { defaultValue: ".html", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "fileExtension", possibleValues: "", notes: "This is ignored if the project_type in the yml is ai2html." },
+        image_output_path: { defaultValue: "", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "folderPath", possibleValues: "", notes: "This is where the image files get written to locally and should be written as if the html_output is the starting point." },
+        image_source_path: { defaultValue: null, includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "folderPath", possibleValues: "", notes: "Use this setting to specify from where the images are being loaded from the HTML file. Defaults to image_output_path" },
+        create_config_file: { defaultValue: "false", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "trueFalse", possibleValues: "", notes: "This is ignored in env=nyt." },
+        config_file_path: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "filePath", possibleValues: "", notes: "This only gets used to write the config file. It’s not used in the nyt mode to read the config.yml. Path should written relative to the ai file location." },
+        local_preview_template: { defaultValue: "", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "filePath", possibleValues: "", notes: "" },
+        png_transparent: { defaultValue: "no", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "" },
+        png_number_of_colors: { defaultValue: 128, includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "integer", possibleValues: "2 to 256", notes: "" },
+        jpg_quality: { defaultValue: 60, includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "integer", possibleValues: "0 to 100", notes: "" },
+        center_html_output: { defaultValue: "true", includeInSettingsBlock: true, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "Adds \u201Cmargin:0 auto;\u201D to the div containing the ai2html output." },
+        use_2x_images_if_possible: { defaultValue: "yes", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "" },
+        use_lazy_loader: { defaultValue: "no", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "" },
+        include_resizer_css_js: { defaultValue: "no", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "" },
+        include_resizer_classes: { defaultValue: "no", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "" },
+        include_resizer_widths: { defaultValue: "yes", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "If set to \u201Cyes\u201D, ai2html adds data-min-width and data-max-width attributes to each artboard" },
+        include_resizer_script: { defaultValue: "no", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "" },
+        useMediaQueriesForBreakpoints: { defaultValue: "yes", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "Uses css media queries to toggle visibility of breakpoint views" },
+        svg_embed_images: { defaultValue: "no", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "" },
+        render_rotated_skewed_text_as: { defaultValue: "html", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "image, html", notes: "" },
+        show_completion_dialog_box: { defaultValue: "yes", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "Set this to \u201Cno\u201D if you don't want to see the dialog box confirming completion of the script." },
+        clickable_link: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "If you put a url in this field, an <a> tag will be added, wrapping around the output and pointing to that url." },
+        testing_mode: { defaultValue: "no", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "" },
+        last_updated_text: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
+        embed_as_iframe: { defaultValue: "yes", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "Set this to “no” if you don't want to create a html wrapper with iframe messenger script." },
+        add_headline_source_wrapper: { defaultValue: "no", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "Set this to “yes” if you want to automatically add a headline, source etc in the standard graphics style. This will be created from the following headline, standfirst, source_left and source_right values" },
+        headline: { defaultValue: "Replace this text", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
+        standfirst: { defaultValue: "", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
+        source: { defaultValue: "Michigan Engineering graphic  |  Source: insert source here", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
+        summary: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "Summary field for Scoop assets" },
+        notes: { defaultValue: "Notes: Text goes here.", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
+        credit: { defaultValue: "By ai2html", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
+        page_template: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
+        publish_system: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
+        environment: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
+        show_in_compatible_apps: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: true, inputType: "yesNo", possibleValues: "", notes: "" },
+        display_for_promotion_only: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "trueFalse", possibleValues: "", notes: "" },
+        constrain_width_to_text_column: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "trueFalse", possibleValues: "", notes: "" },
+        scoop_publish_fields: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "trueFalse", possibleValues: "", notes: "" },
+        scoop_asset_id: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
+        scoop_username: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
+        scoop_slug: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
+        scoop_external_edit_key: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" }
+    };
+
+    var coeFontsCss = "\r\t<style type='text/css' media='screen,print'>\r";
+    coeFontsCss += "\t@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700,800');\r";
+    coeFontsCss += "\t@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400i,700,700i');\r";
+    coeFontsCss += "</style>\r";
+
+    var fonts = [{ "aifont": "OpenSans-Regular", "family": "'Open Sans',arial,helvetica,sans-serif", "weight": "400", "style": "" },
+        { "aifont": "OpenSans-Semibold", "family": "'Open Sans',arial,helvetica,sans-serif", "weight": "600", "style": "" },
+        { "aifont": "OpenSans-Bold", "family": "'Open Sans',arial,helvetica,sans-serif", "weight": "700", "style": "" },
+        { "aifont": "OpenSans-Extrabold", "family": "'Open Sans',arial,helvetica,sans-serif", "weight": "800", "style": "" },
+        { "aifont": "Noto-Regular", "family": "Noto Regular,georgia,'times new roman',times,serif", "weight": "500", "style": "" }
+    ];
+
+
+    // Add extra Guardian character codes
+
+    var guardianCharacterCodes = [
+        ["\x22", "&quot;"],
+        ["\xA0", "&nbsp;"],
+        ["\xA1", "&iexcl;"],
+        ["\xA2", "&cent;"],
+        ["\xA3", "&pound;"],
+        ["\xA4", "&curren;"],
+        ["\xA5", "&yen;"],
+        ["\xA6", "&brvbar;"],
+        ["\xA7", "&sect;"],
+        ["\xA8", "&uml;"],
+        ["\xA9", "&copy;"],
+        ["\xAA", "&ordf;"],
+        ["\xAB", "&laquo;"],
+        ["\xAC", "&not;"],
+        ["\xAD", "&shy;"],
+        ["\xAE", "&reg;"],
+        ["\xAF", "&macr;"],
+        ["\xB0", "&deg;"],
+        ["\xB1", "&plusmn;"],
+        ["\xB2", "&sup2;"],
+        ["\xB3", "&sup3;"],
+        ["\xB4", "&acute;"],
+        ["\xB5", "&micro;"],
+        ["\xB6", "&para;"],
+        ["\xB7", "&middot;"],
+        ["\xB8", "&cedil;"],
+        ["\xB9", "&sup1;"],
+        ["\xBA", "&ordm;"],
+        ["\xBB", "&raquo;"],
+        ["\xBC", "&frac14;"],
+        ["\xBD", "&frac12;"],
+        ["\xBE", "&frac34;"],
+        ["\xBF", "&iquest;"],
+        ["\xC0", "&Agrave;"],
+        ["\xC1", "&Aacute;"],
+        ["\xC2", "&Acirc;"],
+        ["\xC3", "&Atilde;"],
+        ["\xC4", "&Auml;"],
+        ["\xC5", "&Aring;"],
+        ["\xC6", "&AElig;"],
+        ["\xC7", "&Ccedil;"],
+        ["\xC8", "&Egrave;"],
+        ["\xC9", "&Eacute;"],
+        ["\xCA", "&Ecirc;"],
+        ["\xCB", "&Euml;"],
+        ["\xCC", "&Igrave;"],
+        ["\xCD", "&Iacute;"],
+        ["\xCE", "&Icirc;"],
+        ["\xCF", "&Iuml;"],
+        ["\xD0", "&ETH;"],
+        ["\xD1", "&Ntilde;"],
+        ["\xD2", "&Ograve;"],
+        ["\xD3", "&Oacute;"],
+        ["\xD4", "&Ocirc;"],
+        ["\xD5", "&Otilde;"],
+        ["\xD6", "&Ouml;"],
+        ["\xD7", "&times;"],
+        ["\xD8", "&Oslash;"],
+        ["\xD9", "&Ugrave;"],
+        ["\xDA", "&Uacute;"],
+        ["\xDB", "&Ucirc;"],
+        ["\xDC", "&Uuml;"],
+        ["\xDD", "&Yacute;"],
+        ["\xDE", "&THORN;"],
+        ["\xDF", "&szlig;"],
+        ["\xE0", "&agrave;"],
+        ["\xE1", "&aacute;"],
+        ["\xE2", "&acirc;"],
+        ["\xE3", "&atilde;"],
+        ["\xE4", "&auml;"],
+        ["\xE5", "&aring;"],
+        ["\xE6", "&aelig;"],
+        ["\xE7", "&ccedil;"],
+        ["\xE8", "&egrave;"],
+        ["\xE9", "&eacute;"],
+        ["\xEA", "&ecirc;"],
+        ["\xEB", "&euml;"],
+        ["\xEC", "&igrave;"],
+        ["\xED", "&iacute;"],
+        ["\xEE", "&icirc;"],
+        ["\xEF", "&iuml;"],
+        ["\xF0", "&eth;"],
+        ["\xF1", "&ntilde;"],
+        ["\xF2", "&ograve;"],
+        ["\xF3", "&oacute;"],
+        ["\xF4", "&ocirc;"],
+        ["\xF5", "&otilde;"],
+        ["\xF6", "&ouml;"],
+        ["\xF7", "&divide;"],
+        ["\xF8", "&oslash;"],
+        ["\xF9", "&ugrave;"],
+        ["\xFA", "&uacute;"],
+        ["\xFB", "&ucirc;"],
+        ["\xFC", "&uuml;"],
+        ["\xFD", "&yacute;"],
+        ["\xFE", "&thorn;"],
+        ["\xFF", "&yuml;"],
+        ["\xA0", "&nbsp;"],
+        ["\u011f", "&#x11f;"],
+        ["\xe7", "&ccedil;"],
+        ["\xe2", "&acirc;"],
+        ["\u0131", "&#305;"]
+    ];
+
+    htmlCharacterCodes = htmlCharacterCodes.concat(guardianCharacterCodes);
+
+    // ================================================
+    // built-in graphics styles and html
+    // ================================================
+
+
+    function customCOEGraphicsCss() {
+
+        // To use, rename text in layers palette to class=dropshadow etc
+
+        var ccoeCss = "";
+
+        ccoeCss += "\t\tbody {\r";
+        ccoeCss += "\t\t\tborder-top:1px solid #dcdcdc;\r";
+        ccoeCss += "\t\t\tborder-bottom:1px solid #dcdcdc;\r";
+        ccoeCss += "\t\t}\r";
+
+        // White text outline "glow"
+        ccoeCss += "\t\t." + nameSpace + "white-outlined-text p {\r";
+        ccoeCss += "\t\t\ttext-shadow: 1px 1px 0 #FFF, -1px -1px 0 #FFF, 1px -1px 0 #FFF, -1px  1px 0 #FFF, 1px  1px 0 #FFF;\r";
+        ccoeCss += "\t\t}\r";
+
+        // White text outline "glow"
+        ccoeCss += "\t\t." + nameSpace + "white-background-text {\r";
+        ccoeCss += "\t\t\tbackground-color: #FFF;\r";
+        ccoeCss += "\t\t\tpadding: 4px;\r";
+        ccoeCss += "\t\t\tmargin: -4px 0 0 -4px;\r";
+        ccoeCss += "}\t\r";
+
+        ccoeCss += "\t\t." + nameSpace + "shadow p {\r";
+        ccoeCss += "\t\t\ttext-shadow: 0px 0px 20px rgba(0, 0, 0, 0.9);\r";
+        ccoeCss += "\t\t}\r";
+
+        ccoeCss += "\t\t." + nameSpace + "glow p {\r";
+        ccoeCss += "\t\t\ttext-shadow: 0px 0px 20px rgba(255, 255, 255, 0.9);\r";
+        ccoeCss += "\t\t}\r";
+
+
+        return ccoeCss;
+
+    }
+
+
+    // Partial html for standard graphics iframe template
+
+    function addIframeHtml(position) {
+
+
+        var iframeHeaderPartial = "";
+
+        iframeHeaderPartial += "<!doctype html>\r";
+        iframeHeaderPartial += "<html lang='en'>\r";
+        iframeHeaderPartial += "<head>\r";
+        iframeHeaderPartial += "<meta name='viewport' content='width=device-width, initial-scale=1'>\r";
+
+        // zero margin and padding for iframe html
+        iframeHeaderPartial += "<style type='text/css' media='screen,print'>\r";
+        iframeHeaderPartial += "\t@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700,800');\r";
+        iframeHeaderPartial += "html, body {\r";
+        iframeHeaderPartial += "\tpadding:0;\r";
+        iframeHeaderPartial += "\tmargin:0;\r";
+        iframeHeaderPartial += "\t-webkit-font-smoothing:antialiased;\r";
+        iframeHeaderPartial += "\tfont-family: 'Open Sans', serif;\r";
+        iframeHeaderPartial += "}\r";
+        iframeHeaderPartial += "</style>\r";
+
+        iframeHeaderPartial += "</head>\r";
+        iframeHeaderPartial += "<body>\r";
+
+        var iframeFooterPartial = "";
+        iframeFooterPartial = "<script type='text/javascript' src='../../js/resizer-script.js'></script>\r";
+        iframeFooterPartial += "<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js'></script>\r";
+        iframeFooterPartial += "</body>\r";
+        iframeFooterPartial += "</html>\r";
+
+
+        if (position == "header") {
+            return iframeHeaderPartial;
+        } else {
+            return iframeFooterPartial;
+        }
+    }
+
+    // Partial html for standard graphics headline and source. might remove
+
+    function addHeadlineSourceHtml(position) {
+
+        var headerPartial = "";
+
+        headerPartial += "<style>";
+        headerPartial += "." + nameSpace + "graphic-header {\r";
+        headerPartial += "\tposition:relative;\r";
+        headerPartial += "}\r";
+        headerPartial += "." + nameSpace + "graphic-header h1 {\r";
+        headerPartial += "\tpadding:6px 0 25px 0;\r";
+        headerPartial += "\tmargin:0;\r";
+        headerPartial += "\tfont-family:'Open Sans', Georgia, serif;\r";
+        headerPartial += "\tfont-size:18px;\r";
+        headerPartial += "\tfont-weight:700;\r";
+        headerPartial += "\tline-height: 22px;\r";
+        headerPartial += "\tcolor: #333;\r";
+        headerPartial += "}\r";
+        headerPartial += "@media screen and (min-width: 380px) {\r";
+        headerPartial += "." + nameSpace + "graphic-header h1 {\r";
+        headerPartial += "\tfont-size:20px;\r";
+        headerPartial += "\tline-height: 24px;\r";
+        headerPartial += "}\r";
+        headerPartial += "}\r";
+
+        headerPartial += "." + nameSpace + "graphic-header h2 {\r";
+        headerPartial += "\tpadding:0 0 20px 0;\r";
+        headerPartial += "\tmargin:0;\r";
+        headerPartial += "\tfont-family:'Open Sans', Arial, sans-serif;\r";
+        headerPartial += "\tfont-size:14px;\r";
+        headerPartial += "\tfont-weight:200;\r";
+        headerPartial += "\tline-height: 18px;\r";
+        headerPartial += "\tcolor: #333;\r";
+        headerPartial += "}\r";
+
+        headerPartial += "." + nameSpace + "graphic-header h2 b {\r";
+        headerPartial += "\tfont-weight:600;\r";
+        headerPartial += "}\r";
+
+        headerPartial += "." + nameSpace + "graphic-footer {\r";
+        headerPartial += "\tposition:relative;\r";
+        headerPartial += "\theight:auto;\r";
+        headerPartial += "\tmargin-top:0;\r";
+        headerPartial += "}\r";
+        headerPartial += " ." + nameSpace + "graphic-footer p {\r";
+        headerPartial += "\tpadding:6px 0 6px 0;\r";
+        headerPartial += "\tmargin:0;\r";
+        headerPartial += "\tfont-family:'Open Sans', Arial, sans-serif;\r";
+        headerPartial += "\tfont-size:12px;\r";
+        headerPartial += "\tline-height: 15px;\r";
+        headerPartial += "\tcolor: #767676;\r";
+        headerPartial += "\tdisplay: inline-block;\r";
+        headerPartial += "\twidth:100%;\r";
+        headerPartial += "}\r";
+
+        headerPartial += "</style>\r";
+
+
+        headerPartial += "<div class='" + nameSpace + "graphic-header'>\r";
+        if (docSettings.headline != "" && docSettings.headline != " ") {
+            headerPartial += "<h1>" + cleanText(docSettings.headline) + "</h1>\r";
+        }
+        if (docSettings.standfirst != "" && docSettings.standfirst != " ") {
+            headerPartial += "<h2>" + cleanText(docSettings.standfirst) + "</h2>\r";
+        }
+        headerPartial += "</div>\r";
+
+
+        var footerPartial = "";
+        footerPartial += "<div class='" + nameSpace + "graphic-footer'>\r";
+        if (docSettings.source != "" && docSettings.source != " ") {
+            footerPartial += "<p>" + cleanText(docSettings.source) + "</p>\r";
+        }
+        //   footerPartial += "<p>" + docSettings.source_right + "</p>\r";
+        footerPartial += "</div>\r";
+
+
+        if (position == "header") {
+
+            return headerPartial;
+        } else {
+            return footerPartial;
+        }
+
+    }
+
+
+
+
+
+    // ----------------------------  End initialize custom stuff here ----------------------------------------------
+
+
+
+
+
+
+    // CSS text-transform equivalents
     var caps = [
         { "ai": "FontCapsOption.NORMALCAPS", "html": "none" },
         { "ai": "FontCapsOption.ALLCAPS", "html": "uppercase" },
@@ -410,7 +763,6 @@ var fonts = [
     ];
 
     // list of CSS properties used for translating AI text styles
-    // (used for creating a unique identifier for each style)
     var cssTextStyleProperties = [
         'font-family',
         'font-size',
@@ -418,7 +770,6 @@ var fonts = [
         'font-style',
         'color',
         'line-height',
-        'height', // used for point-type paragraph styles
         'letter-spacing',
         'opacity',
         'padding-top',
@@ -440,7 +791,7 @@ var fonts = [
     ];
 
     // TODO: add these to settings spreadsheet
-    var nameSpace = "g-";
+    var nameSpace = "coe-";
     var cssPrecision = 4;
     // If all three RBG channels (0-255) are below this value, convert text fill to pure black.
     var rgbBlackThreshold = 36;
@@ -457,7 +808,6 @@ var fonts = [
     var oneTimeWarnings = [];
     var textFramesToUnhide = [];
     var objectsToRelock = [];
-    var svgLayersToUnhide = [];
 
     // Global variables set by main()
     var docSettings = {};
@@ -478,7 +828,6 @@ var fonts = [
             firstBy,
             zeroPad,
             roundTo,
-            pathJoin,
             folderExists,
             formatCss,
             getCssColor,
@@ -491,10 +840,7 @@ var fonts = [
             convertSettingsToYaml,
             parseDataAttributes,
             parseArtboardName,
-            parseObjectName,
-            cleanObjectName,
-            initDocumentSettings,
-            uniqAssetName
+            initScriptEnvironment
         ].forEach(function(f) {
             module.exports[f.name] = f;
         });
@@ -522,17 +868,20 @@ var fonts = [
         errors.push("Ai2html is unable to run because you are editing an Opacity Mask.");
 
     } else {
-        // initialize global variables
         doc = app.activeDocument;
         docPath = doc.path + "/";
         docIsSaved = doc.saved;
-        scriptEnvironment = detectScriptEnvironment();
-        initDocumentSettings(scriptEnvironment);
-    }
-
-    if (errors.length === 0) {
+        // Use "nyt" environment if it looks like the document is in a Preview project
+        initScriptEnvironment(folderExists(docPath + "../public/_assets") ? 'nyt' : '');
         validateArtboardNames();
-        initUtilityFunctions(); // init T and JSON
+
+        //message($.list());
+
+        // initialize document settings
+        for (var setting in ai2htmlBaseSettings) {
+            docSettings[setting] = ai2htmlBaseSettings[setting].defaultValue;
+        }
+
         T.start();
         try {
             render();
@@ -573,7 +922,6 @@ var fonts = [
         var showPromo = showCompletionAlert(promptForPromo);
         if (showPromo) createPromoImage(docSettings);
     }
-
 
 
     // =================================
@@ -652,21 +1000,30 @@ var fonts = [
         // ================================================
 
         if (scriptEnvironment == "nyt") {
-            // Read yml file to determine what type of project this is
-            // (yml file should be confirmed to exist when nyt environment is set)
-            var yaml = readYamlConfigFile(docPath + "../config.yml") || {};
-            previewProjectType = yaml.project_type == 'ai2html' ? 'ai2html' : '';
-            if ((previewProjectType == "ai2html" && !folderExists(docPath + "../public/")) ||
+
+            // Read yml file if it exists to determine what type of project this is
+            //
+            var yaml = readYamlConfigFile(docPath + "../config.yml");
+            if (!yaml) {
+                previewProjectType = "config.yml is missing";
+            } else {
+                if (yaml.project_type == 'ai2html') {
+                    previewProjectType = 'ai2html';
+                }
+                if (yaml.scoop_slug) {
+                    docSettings.scoop_slug_from_config_yml = yaml.scoop_slug;
+                }
+            }
+
+            if (previewProjectType == "config.yml is missing" ||
+                (previewProjectType == "ai2html" && !folderExists(docPath + "../public/")) ||
                 (previewProjectType != "ai2html" && !folderExists(docPath + "../src/"))) {
                 errors.push("Make sure your Illustrator file is inside the \u201Cai\u201D folder of a Preview project.");
-                errors.push("If the Illustrator file is in the correct folder, your Preview project may be missing a \u201Cpublic\u201D or a \u201Csrc\u201D folder.");
+                errors.push("If the Illustrator file is in the correct folder, your Preview project may be missing a config.yml file or a \u201Cpublic\u201D or a \u201Csrc\u201D folder.");
                 errors.push("If this is an ai2html project, it is probably easier to just create a new ai2html Preview project and move this Illustrator file into the \u201Cai\u201D folder inside the project.");
                 return;
             }
 
-            if (yaml.scoop_slug) {
-                docSettings.scoop_slug_from_config_yml = yaml.scoop_slug;
-            }
             // Read .git/config file to get preview slug
             var gitConfig = readGitConfigFile(docPath + "../.git/config") || {};
             if (gitConfig.url) {
@@ -674,6 +1031,7 @@ var fonts = [
             }
 
             docSettings.image_source_path = "_assets/";
+
             if (previewProjectType == "ai2html") {
                 docSettings.html_output_path = "/../public/";
                 docSettings.html_output_extension = ".html";
@@ -695,14 +1053,14 @@ var fonts = [
         docName = docSettings.project_name || doc.name.replace(/(.+)\.[aieps]+$/, "$1").replace(/ +/g, "-");
         docName = makeKeyword(docName);
 
+        docSettings.html_output_path = "/ai2html-output_" + docName + "/"; // Guardian custom output
+
         if (docSettings.image_source_path === null) {
             docSettings.image_source_path = docSettings.image_output_path;
         }
 
         if (docSettings.image_format.length === 0) {
             warnings.push("No images were created because no image formats were specified.");
-        } else if (contains(docSettings.image_format, "auto")) {
-            docSettings.image_format = [documentContainsVisibleRasterImages() ? 'jpg' : 'png'];
         } else if (documentContainsVisibleRasterImages() && !contains(docSettings.image_format, "jpg")) {
             warnings.push("An artboard contains a raster image -- consider exporting to jpg instead of " +
                 docSettings.image_format[0] + ".");
@@ -714,12 +1072,13 @@ var fonts = [
         pBar = new ProgressBar({ name: "Ai2html progress", steps: calcProgressBarSteps() });
         unlockObjects(); // Unlock containers and clipping masks
         var masks = findMasks(); // identify all clipping masks and their contents
-        var artboardContent = { html: "", css: "", js: "" };
+        var artboardContent = "";
+        var ind = 0;
 
         forEachUsableArtboard(function(activeArtboard, abNumber) {
             var abSettings = getArtboardSettings(activeArtboard);
             var docArtboardName = getArtboardFullName(activeArtboard);
-            var textFrames, textData, imageData;
+            var textFrames, textData;
             doc.artboards.setActiveArtboardIndex(abNumber);
 
             // ========================
@@ -742,9 +1101,7 @@ var fonts = [
 
             if (isTrue(docSettings.write_image_files)) {
                 pBar.setTitle(docArtboardName + ': Capturing image...');
-                imageData = convertArtItems(activeArtboard, textFrames, masks, docSettings);
-            } else {
-                imageData = { html: "" };
+                captureArtboardImage(activeArtboard, textFrames, masks, docSettings);
             }
             pBar.step();
 
@@ -752,42 +1109,44 @@ var fonts = [
             // finish generating artboard HTML and CSS
             //=====================================
 
-            artboardContent.html += "\r\t<!-- Artboard: " + getArtboardName(activeArtboard) + " -->\r" +
+            artboardContent +=
+                "\r\t<!-- Artboard: " + getArtboardName(activeArtboard) + " -->\r" +
                 generateArtboardDiv(activeArtboard, breakpoints, docSettings) +
-                imageData.html +
+                generateArtboardCss(activeArtboard, textData.styles, docSettings, ind) +
+                generateImageHtml(activeArtboard, docSettings) +
                 textData.html +
                 "\t</div>\r";
-            artboardContent.css += generateArtboardCss(activeArtboard, textData.styles, docSettings);
-            /*
-            artboardContent +=
-              "\r\t<!-- Artboard: " + getArtboardName(activeArtboard) + " -->\r" +
-              generateArtboardDiv(activeArtboard, breakpoints, docSettings) +
-              generateArtboardCss(activeArtboard, textData.styles, docSettings) +
-              generateImageHtml(activeArtboard, docSettings) +
-              textData.html +
-              "\t</div>\r";
-            */
+
+
+
+            ind++;
+
+
+
 
             //=====================================
             // output html file here if doing a file for every artboard
             //=====================================
 
             if (docSettings.output == "multiple-files") {
-                addCustomContent(artboardContent, customBlocks);
-                generateOutputHtml(artboardContent, docArtboardName, docSettings);
-                artboardContent = { html: "", css: "", js: "" };
+                generateOutputHtml(addCustomContent(artboardContent, customBlocks), docArtboardName, docSettings, null);
+                artboardContent = "";
             }
 
         }); // end artboard loop
+
+
 
         //=====================================
         // output html file here if doing one file for all artboards
         //=====================================
 
         if (docSettings.output == "one-file") {
-            addCustomContent(artboardContent, customBlocks);
-            generateOutputHtml(artboardContent, docName, docSettings);
+            var mqCss = generateMediaQueryCss();
+            generateOutputHtml(addCustomContent(artboardContent, customBlocks), docName, docSettings, mqCss);
         }
+
+
 
         //=====================================
         // write configuration file with graphic metadata
@@ -1009,7 +1368,7 @@ var fonts = [
         var month = zeroPad(d.getMonth() + 1, 2);
         var hour = zeroPad(d.getHours(), 2);
         var min = zeroPad(d.getMinutes(), 2);
-        return year + "-" + month + "-" + date + " " + hour + ":" + min;
+        return year + "-" + month + "-" + date + " - " + hour + ":" + min;
     }
 
     // obj: JS object containing css properties and values
@@ -1065,20 +1424,6 @@ var fonts = [
         return template.replace(mustachePattern, replace).replace(ejsPattern, replace);
     }
 
-    // Similar to Node.js path.join()
-    function pathJoin() {
-        var path = "";
-        forEach(arguments, function(arg) {
-            if (!arg) return;
-            arg = String(arg);
-            arg = arg.replace(/^\/+/, "").replace(/\/+$/, "");
-            if (path.length > 0) {
-                path += '/';
-            }
-            path += arg;
-        });
-        return path;
-    }
 
 
     // ======================================
@@ -1189,6 +1534,7 @@ var fonts = [
                 warnings.push("The " + nickname + " folder did not exist and could not be created.");
             }
         }
+        return outputFolder;
     }
 
 
@@ -1334,37 +1680,16 @@ var fonts = [
         alert('Info:\n' + msg);
     }
 
-    function detectScriptEnvironment() {
-        var env = detectTimesFonts() ? 'nyt' : '';
-        // Handle case where user seems to be at NYT but is running ai2html outside of Preview
-        if (env == 'nyt' && !fileExists(docPath + "../config.yml")) {
-            if (confirm("You seem to be running ai2html outside of NYT Preview.\nContinue in non-Preview mode?", true)) {
-                env = ''; // switch to non-nyt context
-            } else {
-                errors.push("Ai2html should be run inside a Preview project.");
-            }
-        }
-        return env;
-    }
+    function initScriptEnvironment(env) {
 
-    function detectTimesFonts() {
-        var found = false;
-        try {
-            found = !!(app.textFonts.getByName('NYTFranklin-Medium') && app.textFonts.getByName('NYTCheltenham-Medium'));
-        } catch (e) {}
-        return found;
-    }
+        //scriptEnvironment = env;
 
-    function initDocumentSettings(env) {
-        ai2htmlBaseSettings = env == 'nyt' ? nytBaseSettings : defaultBaseSettings;
-        // initialize document settings
-        docSettings = {};
-        for (var setting in ai2htmlBaseSettings) {
-            docSettings[setting] = ai2htmlBaseSettings[setting].defaultValue;
-        }
-    }
+        //ai2htmlBaseSettings = env == 'nyt' ? nytBaseSettings : defaultBaseSettings;
 
-    function initUtilityFunctions() {
+        scriptEnvironment = "coe";
+
+        ai2htmlBaseSettings = coeBaseSettings;
+
         // Enable timing using T.start() and T.stop("message")
         T = {
             stack: [],
@@ -1558,8 +1883,7 @@ var fonts = [
         alertText += "\n";
         if (showPrompt) {
             alertText += rule + "Generate promo image?";
-            // confirm(<msg>, false) makes "Yes" the default (at Baden's request).
-            makePromo = confirm(alertHed + alertText, false);
+            makePromo = confirm(alertHed + alertText, true); // true: "No" is default
         } else {
             alertText += rule + "ai2html-nyt5 v" + scriptVersion;
             alert(alertHed + alertText);
@@ -1659,14 +1983,10 @@ var fonts = [
         return id;
     }
 
-    function cleanObjectName(name) {
-        return makeKeyword(name.replace(/^(.+):.*$/, "$1"));
-    }
-
     // TODO: prevent duplicate names? or treat duplicate names an an error condition?
     // (artboard name is assumed to be unique in several places)
     function getArtboardName(ab) {
-        return cleanObjectName(ab.name);
+        return makeKeyword(ab.name.replace(/^(.+):.*$/, "$1"));
     }
 
     function getArtboardFullName(ab) {
@@ -1712,54 +2032,31 @@ var fonts = [
         return [minw, maxw ? maxw - 1 : Infinity];
     }
 
-    // Parse data that is encoded in a name
-    function parseObjectName(name) {
+    // Parse artboard-specific settings from artboard name
+    function parseArtboardName(name) {
+        // parse old-style width declaration
+        var widthStr = (/^ai2html-(\d+)/.exec(name) || [])[1];
         // capture portion of name after colon
         var settingsStr = (/:(.*)/.exec(name) || [])[1] || "";
         var settings = {};
-        // parse old-style width declaration
-        var widthStr = (/^ai2html-(\d+)/.exec(name) || [])[1];
+        forEach(settingsStr.split(','), function(part) {
+            if (/^\d+$/.test(part)) {
+                widthStr = part;
+            } else if (part) {
+                // assuming setting is a flag
+                settings[part] = true;
+            }
+        });
         if (widthStr) {
             settings.width = parseFloat(widthStr);
         }
-        // remove suffixes added by copying
-        settingsStr = settingsStr.replace(/ copy.*/i, '');
-        forEach(settingsStr.split(','), function(part) {
-            var eq = part.indexOf('=');
-            var name, value;
-            if (/^\d+$/.test(part)) {
-                name = 'width';
-                value = part;
-            } else if (eq > 0) {
-                name = part.substr(0, eq);
-                value = part.substr(eq + 1);
-            } else if (part) {
-                // assuming setting is a flag
-                name = part;
-                value = "true";
-            }
-            if (name && value) {
-                if (/^\d+$/.test(value)) {
-                    value = parseFloat(value);
-                } else if (isTrue(value)) {
-                    value = true;
-                }
-                settings[name] = value;
-            }
-        });
         return settings;
-    }
-
-    // TODO: redundant -- remove
-    function parseArtboardName(name) {
-        return parseObjectName(name);
     }
 
     function getArtboardSettings(ab) {
         // currently, artboard-specific settings are all stashed in the artboard name
         return parseArtboardName(ab.name);
     }
-
 
     // return array of data records about each usable artboard, sorted from narrow to wide
     function getArtboardInfo() {
@@ -1938,28 +2235,15 @@ var fonts = [
         return ancestorLyr;
     }
 
-    // Test if a mask can be ignored
-    // (An optimization -- currently only finds group masks with no text frames)
-    function maskIsRelevant(mask) {
-        var parent = mask.parent;
-        if (parent.typename == "GroupItem") {
-            if (parent.textFrames.length === 0) {
-                return false;
-            }
-        }
-        return true;
-    }
-
     function findMasks() {
         var found = [],
-            masks, relevantMasks;
+            masks;
         // assumes clipping paths have been unlocked
         app.executeMenuCommand('Clipping Masks menu item');
         masks = toArray(doc.selection);
         clearSelection();
-        relevantMasks = filter(masks, maskIsRelevant);
         forEach(masks, function(mask) { mask.locked = true; });
-        forEach(relevantMasks, function(mask) {
+        forEach(masks, function(mask) {
             var items, obj;
             mask.locked = false;
             // select a single mask
@@ -2057,7 +2341,7 @@ var fonts = [
         o.aifont = c.textFont.name;
         o.size = Math.round(c.size);
         o.capitalization = caps == 'FontCapsOption.NORMALCAPS' ? '' : caps;
-        o.tracking = c.tracking;
+        o.tracking = c.tracking
         return o;
     }
 
@@ -2151,12 +2435,11 @@ var fonts = [
             } else {
                 d = {
                     text: p.contents,
-                    aiStyle: getParagraphStyle(p),
+                    aiStyle: getParagraphStyle(p, opacity),
                     ranges: getParagraphRanges(p)
                 };
                 d.aiStyle.opacity = opacity;
                 d.aiStyle.blendMode = blendMode;
-                d.aiStyle.frameType = textFrame.kind == TextType.POINTTEXT ? 'point' : 'area';
             }
             data.push(d);
             charsLeft -= (plen + 1); // char count + newline
@@ -2174,8 +2457,7 @@ var fonts = [
     }
 
     function generateParagraphHtml(pData, baseStyle, pStyles, cStyles) {
-        var classStr = '',
-            html, diff, range, text;
+        var html, diff, classname, range, text;
         if (pData.text.length === 0) { // empty pg
             // TODO: Calculate the height of empty paragraphs and generate
             // CSS to preserve this height (not supported by Illustrator API)
@@ -2184,15 +2466,18 @@ var fonts = [
         diff = objectSubtract(pData.cssStyle, baseStyle);
         // Give the pg a class, if it has a different style than the base pg class
         if (diff) {
-            classStr = ' class="' + getTextStyleClass(diff, pStyles, 'pstyle') + '"';
+            classname = getTextStyleClass(diff, pStyles, 'pstyle');
+            html = '<p class="' + classname + '">';
+        } else {
+            html = '<p>';
         }
-        html = '<p' + classStr + '>';
         for (var j = 0; j < pData.ranges.length; j++) {
             range = pData.ranges[j];
             range.text = cleanHtmlTags(range.text);
             diff = objectSubtract(range.cssStyle, pData.cssStyle);
             if (diff) {
-                html += '<span class="' + getTextStyleClass(diff, cStyles, 'cstyle') + '">';
+                classname = getTextStyleClass(diff, cStyles, 'cstyle');
+                html += '<span class="' + classname + '">';
             }
             html += cleanText(range.text);
             if (diff) {
@@ -2233,10 +2518,10 @@ var fonts = [
 
         var allStyles = pgStyles.concat(charStyles);
         var cssBlocks = map(allStyles, function(obj) {
-            return '.' + obj.classname + ' {' + formatCss(obj.style, '\t\t') + '\t}\r';
+            return '.' + obj.classname + ' {' + formatCss(obj.style, '\t\t\t\t') + '\t\t\t}\r';
         });
         if (divs.length > 0) {
-            cssBlocks.unshift('p {' + formatCss(baseStyle, '\t\t') + '\t}\r');
+            cssBlocks.unshift('p {' + formatCss(baseStyle, '\t\t\t\t') + '\t\t\t}\r');
         }
 
         return {
@@ -2259,8 +2544,7 @@ var fonts = [
             'padding-bottom': 0,
             'padding-top': 0,
             'mix-blend-mode': 'normal',
-            'font-style': 'normal',
-            'height': 'auto'
+            'font-style': 'normal'
         };
         var defaultAiStyle = {
             opacity: 100 // given as AI style because opacity is converted to several CSS properties
@@ -2271,12 +2555,11 @@ var fonts = [
             forEach(frame.paragraphs, analyzeParagraphStyle);
         });
 
-        // initialize the base <p> style to be equal to the most common pg style
+        // find the most common pg style and override certain properties
         if (pgStyles.length > 0) {
             pgStyles.sort(compareCharCount);
             extend(baseStyle, pgStyles[0].cssStyle);
         }
-        // override certain base style properties with default values
         extend(baseStyle, defaultCssStyle, convertAiTextStyle(defaultAiStyle));
         return baseStyle;
 
@@ -2425,10 +2708,6 @@ var fonts = [
         }
         if ('leading' in aiStyle) {
             cssStyle["line-height"] = aiStyle.leading + "px";
-            // Fix for line height error affecting point text in Chrome/Safari at certain browser zooms.
-            if (aiStyle.frameType == 'point') {
-                cssStyle.height = cssStyle["line-height"];
-            }
         }
         // if (('opacity' in aiStyle) && aiStyle.opacity < 100) {
         if ('opacity' in aiStyle) {
@@ -2448,7 +2727,7 @@ var fonts = [
             cssStyle["padding-bottom"] = aiStyle.spaceAfter + "px";
         }
         if ('tracking' in aiStyle) {
-            cssStyle["letter-spacing"] = roundTo(aiStyle.tracking / 1000, cssPrecision) + "em";
+            //cssStyle["letter-spacing"] = roundTo(aiStyle.tracking / 1000, cssPrecision) + "em";
         }
         if (aiStyle.justification && (tmp = getJustificationCss(aiStyle.justification))) {
             cssStyle["text-align"] = tmp;
@@ -2657,10 +2936,9 @@ var fonts = [
             // EXPERIMENTAL feature
             // Put a box around the text, if the text frame's textPath is styled
             styles += convertAreaTextPath(thisFrame);
-        } else { // point text
+        } else {
             // point text aligned to midline (sensible default for chart y-axes, map labels, etc.)
             v_align = "middle";
-            htmlW += 22; // add a bit of extra width to try to prevent overflow
         }
 
         if (thisFrameAttributes.valign) {
@@ -2686,9 +2964,7 @@ var fonts = [
             styles += "right:" + formatCssPct(abBox.width - (htmlL + htmlBox.width), abBox.width);
         } else if (alignment == "center") {
             styles += "left:" + formatCssPct(htmlL + htmlBox.width / 2, abBox.width);
-            // using pct margin causes problems in a dynamic layout, switching to pixels
-            // styles += "margin-left:" + formatCssPct(-htmlW / 2, abBox.width);
-            styles += "margin-left:-" + roundTo(htmlW / 2, 1) + 'px;';
+            styles += "margin-left:" + formatCssPct(-htmlW / 2, abBox.width);
         } else {
             styles += "left:" + formatCssPct(htmlL, abBox.width);
         }
@@ -2698,7 +2974,7 @@ var fonts = [
             classes += ' ' + nameSpace + 'aiPointText';
             // using pixel width with point text, because pct width causes alignment problems -- see issue #63
             // adding extra pixels in case HTML width is slightly less than AI width (affects alignment of right-aligned text)
-            styles += "width:" + roundTo(htmlW, cssPrecision) + 'px;';
+            styles += "width:" + roundTo(htmlW + 2, cssPrecision) + 'px;';
         } else {
             // area text uses pct width, so width of text boxes will scale
             // TODO: consider only using pct width with wider text boxes that contain paragraphs of text
@@ -2731,145 +3007,58 @@ var fonts = [
     // ai2html image functions
     // =================================
 
-    function getArtboardImageName(ab) {
-        return getArtboardFullName(ab);
-    }
-
-    function getLayerImageName(lyr, ab) {
-        return getArtboardImageName(ab) + "-" + cleanObjectName(lyr.name);
-    }
-
-    function getImageId(imgName) {
-        return nameSpace + imgName + "-img";
-    }
-
-    function uniqAssetName(name, names) {
-        var uniqName = name;
-        var num = 2;
-        while (contains(names, uniqName)) {
-            uniqName = name + '-' + num;
-            num++;
-        }
-        return uniqName;
-    }
-
-
-    // Generate images and return HTML embed code
-    function convertArtItems(activeArtboard, textFrames, masks, settings) {
-        var imageFolder = getImageFolder(settings);
-        var imgName = getArtboardImageName(activeArtboard);
-        var imgFile = imgName + '.' + (settings.image_format[0] || "png").substring(0, 3);
-        var imgId = getImageId(imgName);
-        var imgClass = nameSpace + 'aiImg';
-        var imageDestination = pathJoin(imageFolder, imgName);
-        var hideTextFrames = !isTrue(settings.testing_mode);
-        var html = "";
-        var n = textFrames.length;
-        var imageNames = [];
-        var svgLayers;
+    // ab: artboard (assumed to be the active artboard)
+    // textFrames:  text frames belonging to the active artboard
+    function captureArtboardImage(ab, textFrames, masks, settings) {
+        var docArtboardName = getArtboardFullName(ab);
+        var imageDestinationFolder = docPath + settings.html_output_path + settings.image_output_path;
+        var imageDestination = imageDestinationFolder + docArtboardName;
         var i;
+        checkForOutputFolder(imageDestinationFolder, "image_output_path");
 
-        checkForOutputFolder(imageFolder, "image_output_path");
-
-        if (hideTextFrames) {
-            for (i = 0; i < n; i++) {
+        if (!isTrue(settings.testing_mode)) {
+            for (i = 0; i < textFrames.length; i++) {
                 textFrames[i].hidden = true;
             }
         }
 
-        svgLayers = findSvgExportLayers();
-        if (svgLayers.length > 0) {
-            forEach(svgLayers, function(lyr) {
-                var svgName = uniqAssetName(getLayerImageName(lyr, activeArtboard), imageNames);
-                var svgId = getImageId(svgName);
-                var svgClass = imgClass + ' ' + nameSpace + 'aiAbs';
-                var outputPath = pathJoin(imageFolder, svgName);
-                var ofile = exportSVG(outputPath, activeArtboard, masks, [lyr]);
-                if (ofile) {
-                    // only generate html for files that were created (empty files are not created)
-                    message('Exported a layer as ' + ofile.replace(/.*\//, ''));
-                    imageNames.push(svgName);
-                    html += generateImageHtml(svgName + '.svg', svgId, svgClass, activeArtboard, settings);
-                }
-            });
-
-            // hide all svg Layers
-            forEach(svgLayers, function(lyr) {
-                lyr.visible = false;
-            });
-        }
-
-        captureArtboardImage(imageDestination, activeArtboard, masks, settings);
-        html += generateImageHtml(imgFile, imgId, imgClass, activeArtboard, settings);
-
-        // unhide svg export layers (if any)
-        forEach(svgLayers, function(lyr) {
-            lyr.visible = true;
-        });
-
-
-        if (hideTextFrames) {
-            for (i = 0; i < n; i++) {
-                textFrames[i].hidden = false;
-            }
-        }
-
-        return { html: html };
-    }
-
-    function findLayers(layers, test) {
-        var retn = null;
-        forEach(layers, function(lyr) {
-            var found = null;
-            if (objectIsHidden(lyr)) {
-                // skip
-            } else if (test(lyr)) {
-                found = [lyr];
-            } else if (lyr.layers.length > 0) {
-                // examine sublayers (only if layer didn't test positive)
-                found = findLayers(lyr.layers, test);
-            }
-            if (found) {
-                retn = retn ? retn.concat(found) : found;
-            }
-        });
-        return retn;
-    }
-
-    function findSvgExportLayers() {
-        function test(lyr) {
-            return parseObjectName(lyr.name).svg;
-        }
-        return findLayers(doc.layers, test) || [];
-    }
-
-    function getImageFolder(settings) {
-        return pathJoin(docPath, settings.html_output_path, settings.image_output_path);
-    }
-
-
-    // ab: artboard (assumed to be the active artboard)
-    // textFrames:  text frames belonging to the active artboard
-    function captureArtboardImage(imageDestination, ab, masks, settings) {
         exportImageFiles(imageDestination, ab, settings.image_format, 1, docSettings.use_2x_images_if_possible);
         if (contains(settings.image_format, 'svg')) {
             exportSVG(imageDestination, ab, masks);
         }
+
+        if (!isTrue(settings.testing_mode)) {
+            for (i = 0; i < textFrames.length; i++) {
+                textFrames[i].hidden = false;
+            }
+        }
     }
 
     // Create an <img> tag for the artboard image
-    function generateImageHtml(imgFile, imgId, imgClass, ab, settings) {
-        var abPos = convertAiBounds(ab.artboardRect),
-            src = settings.image_source_path + imgFile,
+    function generateImageHtml(ab, settings) {
+        var abName = getArtboardFullName(ab),
+            abPos = convertAiBounds(ab.artboardRect),
+            imgId = nameSpace + "ai" + getArtboardId(ab) + "-0",
+            extension = (settings.image_format[0] || "png").substring(0, 3),
+            src = settings.image_source_path + abName + "." + extension,
             html;
 
-        html = '\t\t<img id="' + imgId + '" class="' + imgClass + '" alt="' + settings.alt_text + '" ';
-        if (isTrue(settings.use_lazy_loader)) {
-            html += ' data-src="' + src + '"';
-            // spaceholder while image loads
-            src = 'data:image/gif;base64,R0lGODlhCgAKAIAAAB8fHwAAACH5BAEAAAAALAAAAAAKAAoAAAIIhI+py+0PYysAOw==';
+        if (isTrue(settings.useMediaQueriesForBreakpoints)) { // use background images
+
+            html = '\t\t<div id="' + imgId + '" class="' + nameSpace + 'aiBackgroundImg" ';
+            html += 'style="width:100%;padding-bottom:' + (roundTo(abPos.height / abPos.width, 4) * 100) + '%; background-image:url(' + src + ');"></div>\r';
+
+        } else { // use images
+
+            html = '\t\t<img id="' + imgId + '" class="' + nameSpace + 'aiImg"';
+            if (isTrue(settings.use_lazy_loader)) {
+                html += ' data-height-multiplier="' + roundTo(abPos.height / abPos.width, 4) + '"';
+                html += ' data-src="' + src + '"';
+                // spaceholder while image loads
+                src = 'data:image/gif;base64,R0lGODlhCgAKAIAAAB8fHwAAACH5BAEAAAAALAAAAAAKAAoAAAIIhI+py+0PYysAOw==';
+            }
+            html += ' src="' + src + '"/>\r';
         }
-        html += ' src="' + src + '"/>\r';
         return html;
     }
 
@@ -2983,43 +3172,33 @@ var fonts = [
 
 
     // Copy contents of an artboard to a temporary document, excluding objects
-    //   that are hidden by masks
-    // layers Optional argument to copy specific layers (default is all layers)
-    // Returns a newly-created document containing artwork to export, or null
-    //   if no image should be created.
-    //
+    // that are hidden by masks
     // TODO: grouped text is copied (but hidden). Avoid copying text in groups, for
     //   smaller SVG output.
-    function copyArtboardForImageExport(ab, masks, layers) {
+    function copyArtboardForImageExport(ab, masks) {
         var layerMasks = filter(masks, function(o) { return !!o.layer; }),
             artboardBounds = ab.artboardRect,
-            sourceLayers = layers || toArray(doc.layers),
+            sourceLayers = toArray(doc.layers),
             destLayer = doc.layers.add(),
             destGroup = doc.groupItems.add(),
-            itemCount = 0,
             groupPos, group2, doc2;
 
         destLayer.name = "ArtboardContent";
         destGroup.move(destLayer, ElementPlacement.PLACEATEND);
         forEach(sourceLayers, copyLayer);
-
-        // kludge: export empty documents iff layers argument is missing (assuming
-        //    this is the main artboard image, which is needed to set the container size)
-        if (itemCount > 0 || !layers) {
-            // need to save group position before copying to second document. Oddly,
-            // the reported position of the original group changes after duplication
-            groupPos = destGroup.position;
-            // create temp document (pretty slow -- ~1.5s)
-            doc2 = app.documents.add(DocumentColorSpace.RGB, doc.width, doc.height, 1);
-            doc2.pageOrigin = doc.pageOrigin; // not sure if needed
-            doc2.rulerOrigin = doc.rulerOrigin;
-            doc2.artboards[0].artboardRect = artboardBounds;
-            group2 = destGroup.duplicate(doc2.layers[0], ElementPlacement.PLACEATEND);
-            group2.position = groupPos;
-        }
+        // need to save group position before copying to second document. Oddly,
+        // the reported position of the original group changes after duplication
+        groupPos = destGroup.position;
+        // create temp document (pretty slow -- ~1.5s)
+        doc2 = app.documents.add(DocumentColorSpace.RGB, doc.width, doc.height, 1);
+        doc2.pageOrigin = doc.pageOrigin; // not sure if needed
+        doc2.rulerOrigin = doc.rulerOrigin;
+        doc2.artboards[0].artboardRect = artboardBounds;
+        group2 = destGroup.duplicate(doc2.layers[0], ElementPlacement.PLACEATEND);
+        group2.position = groupPos;
         destGroup.remove();
         destLayer.remove();
-        return doc2 || null;
+        return doc2;
 
         function copyLayer(lyr) {
             var mask;
@@ -3090,7 +3269,6 @@ var fonts = [
             var copy;
             if (!excluded) {
                 copy = item.duplicate(dest, ElementPlacement.PLACEATEND); //  duplicateItem(item, dest);
-                itemCount++;
                 if (copy.typename == 'GroupItem') {
                     removeHiddenItems(copy);
                 }
@@ -3098,17 +3276,12 @@ var fonts = [
         }
     }
 
-    // Returns path of output SVG file, or null if no file was created
-    function exportSVG(dest, ab, masks, layers) {
+    function exportSVG(dest, ab, masks) {
         // Illustrator's SVG output contains all objects in a document (it doesn't
         //   clip to the current artboard), so we copy artboard objects to a temporary
         //   document for export.
-        var exportDoc = copyArtboardForImageExport(ab, masks, layers);
+        var exportDoc = copyArtboardForImageExport(ab, masks);
         var opts = new ExportOptionsSVG();
-        var ofile = dest + '.svg';
-
-        if (!exportDoc) return null;
-
         opts.embedAllFonts = false;
         opts.fontSubsetting = SVGFontSubsetting.None;
         opts.compressed = false;
@@ -3117,27 +3290,12 @@ var fonts = [
         opts.DTD = SVGDTDVersion.SVG1_1;
         opts.cssProperties = SVGCSSPropertyLocation.STYLEATTRIBUTES;
 
-        exportDoc.exportFile(new File(ofile), ExportType.SVG, opts);
+        exportDoc.exportFile(new File(dest), ExportType.SVG, opts);
         doc.activate();
         //exportDoc.pageItems.removeAll();
         exportDoc.close(SaveOptions.DONOTSAVECHANGES);
-        // prevent SVG strokes from scaling
-        injectCSSinSVG(ofile, 'rect,circle,path,line,polyline { vector-effect: non-scaling-stroke; }');
-        return ofile;
     }
 
-    // Injects css and rewrites file
-    // TODO: remove CDATA (incompatible with NYT h.p.)
-    function injectCSSinSVG(path, css) {
-        var file = new File(path);
-        var style = '<style type="text/css"><![CDATA[\n' + css + '\n]]></style>';
-        var content;
-        if (!file.exists) return;
-        file.open("r");
-        content = file.read();
-        file.close();
-        saveTextFile(path, content.replace('</svg>', style + '\n</svg>'));
-    }
 
 
     // ===================================
@@ -3146,7 +3304,7 @@ var fonts = [
 
     function generateArtboardDiv(ab, breakpoints, settings) {
         var divId = nameSpace + getArtboardFullName(ab);
-        var classnames = nameSpace + "artboard " + nameSpace + "artboard-v4";
+        var classnames = nameSpace + "artboard " + nameSpace + "artboard-v3";
         var widthRange = getArtboardWidthRange(ab);
         var html = "";
         if (!isFalse(settings.include_resizer_classes)) {
@@ -3176,15 +3334,22 @@ var fonts = [
         return classes.join(' ');
     }
 
-    function generateArtboardCss(ab, textClasses, settings) {
-        var t3 = '\t',
+    function generateArtboardCss(ab, textClasses, settings, ind) {
+        var t3 = '\t\t\t',
             t4 = t3 + '\t',
             abId = "#" + nameSpace + getArtboardFullName(ab),
             css = "";
+        css += "\t\t<style type='text/css' media='screen,print'>\r";
         css += t3 + abId + " {\r";
         css += t4 + "position:relative;\r";
         css += t4 + "overflow:hidden;\r";
-        if (settings.responsiveness == "fixed") {
+
+        //$.writeln( ind );
+
+        var sortedArtboards = getArtboardInfo();
+        var firstArtboardIndex = sortedArtboards[0].id;
+
+        if (settings.responsiveness == "fixed" && ind != firstArtboardIndex) { // never fixed for first artboard
             css += t4 + "width:" + convertAiBounds(ab.artboardRect).width + "px;\r";
         }
         css += t3 + "}\r";
@@ -3193,14 +3358,16 @@ var fonts = [
         forEach(textClasses, function(cssBlock) {
             css += t3 + abId + " " + cssBlock;
         });
+
+        css += "\t\t</style>\r";
         return css;
     }
 
     // Get CSS styles that are common to all generated content
     function generatePageCss(containerId, settings) {
-        var css = "";
-        var t2 = '\t';
-        var t3 = '\t\t';
+        var css = "\r\t<style type='text/css' media='screen,print'>\r";
+        var t2 = '\t\t';
+        var t3 = '\t\t\t';
 
         if (!!settings.max_width) {
             css += t2 + "#" + containerId + " {\r";
@@ -3234,8 +3401,67 @@ var fonts = [
         css += t3 + "width:100% !important;\r";
         css += t2 + "}\r";
 
-        css += t2 + '.' + nameSpace + 'aiPointText p { white-space: nowrap; }\r';
+        // when using background images for lazyloading with media queries
+
+        css += t2 + "." + nameSpace + "aiBackgroundImg{\r";
+        css += t3 + "display:block;\r";
+        css += t3 + "position:relative;\r";
+        css += t3 + "background-repeat:no-repeat;\r";
+        css += t3 + "background-size:cover;\r";
+        css += t3 + "width:100% !important;\r";
+        css += t2 + "}\r";
+
+        css += t2 + '.' + nameSpace + 'aiPointText p { white-space: nowrap; }\r'; // TODO: move to page css
+
+        css += customCOEGraphicsCss();
+
+        css += "\t</style>\r";
         return css;
+    }
+
+    // toggle on and off artboards with media queries
+
+    function generateMediaQueryCss() {
+
+        var css = "",
+            infoArr, ab, abW;
+
+        if (isTrue(docSettings.useMediaQueriesForBreakpoints)) {
+
+            css += "\t<style type='text/css' media='screen,print'>\r";
+            infoArr = getArtboardInfo();
+
+            for (var abIndex = 0; abIndex < infoArr.length; abIndex++) {
+
+                if (abIndex > 0) {
+                    css += "\t\t@media (min-width: " + (Number(infoArr[abIndex].width) - .5) + "px) { \r";
+                }
+
+
+
+                for (var abNumber = 0; abNumber < infoArr.length; abNumber++) {
+                    abW = infoArr[abNumber].width;
+                    ab = doc.artboards[infoArr[abNumber].id];
+
+                    css += "\t\t\t#" + nameSpace + getArtboardFullName(ab) + " {"
+                    if (abW == infoArr[abIndex].width) {
+                        css += " display: block;";
+                    } else {
+                        css += " display: none;";
+                    }
+                    css += "}\r"
+
+                }
+
+                if (abIndex > 0) {
+                    css += "\t\t\t} \r";
+                }
+            }
+            css += "\t</style>\r";
+        }
+
+        return css;
+
     }
 
     function generateYamlFileContent(breakpoints, settings) {
@@ -3281,7 +3507,7 @@ var fonts = [
     }
 
     function getResizerScript() {
-        // The resizer function is embedded in the HTML page -- external variables must
+        // The resizer function is embedded in the HTML page -- outside variables must
         // be passed in.
         var resizer = function(scriptEnvironment, nameSpace) {
             // only want one resizer on the page
@@ -3370,7 +3596,7 @@ var fonts = [
         var resizerJs = '(' +
             trim(resizer.toString().replace(/  /g, '\t')) + // indent with tabs
             ')("' + scriptEnvironment + '", "' + nameSpace + '");';
-        return '<script type="text/javascript">\r\t' + resizerJs + '\r</script>\r';
+        return '<script type="text/javascript">\n\t' + resizerJs + '\n\t</script>\n\n';
     }
 
 
@@ -3384,30 +3610,29 @@ var fonts = [
 
     function addCustomContent(content, customBlocks) {
         if (customBlocks.css) {
-            content.css += "\r\t\t/* Custom CSS */\r\t\t" + customBlocks.css.join('\r\t\t') + '\r';
-            /*
             content = "\r\t<style type='text/css' media='screen,print'>\r" +
-              "\t\t" + customBlocks.css.join('\r\t\t') +
-              "\t</style>\r" + content;
-            */
+                "\t\t/* Custom CSS */\r\t\t" + customBlocks.css.join('\r\t\t') +
+                "\t</style>\r" + content;
         }
         if (customBlocks.html) {
-            content.html += "\r\t<!-- Custom HTML -->\r" + customBlocks.html.join('\r') + '\r';
+            content += "\r\t<!-- Custom HTML -->\r" + customBlocks.html.join('\r') + '\r';
         }
         // TODO: assumed JS contained in <script> tag -- verify this?
         if (customBlocks.js) {
-            content.js += "\r\t<!-- Custom JS -->\r" + customBlocks.js.join('\r') + '\r';
+            content += "\r\t<!-- Custom JS -->\r" + customBlocks.js.join('\r') + '\r';
         }
+        return content;
     }
 
     // Wrap content HTML in a <div>, add styles and resizer script, write to a file
-    function generateOutputHtml(content, pageName, settings) {
+    function generateOutputHtml(pageContent, pageName, settings, mqCss) {
         var linkSrc = settings.clickable_link || "";
+        var textForFile = "";
         var responsiveCss = "";
         var responsiveJs = "";
         var containerId = nameSpace + pageName + "-box";
-        var textForFile, html, js, css, commentBlock;
-        var htmlFileDestinationFolder;
+        var htmlFileDestination, htmlFileDestinationFolder;
+        var finalFolder;
 
         pBar.setTitle('Writing HTML output...');
 
@@ -3418,59 +3643,71 @@ var fonts = [
             }
         }
         if (isTrue(settings.include_resizer_script)) {
-            responsiveJs = getResizerScript();
+            responsiveJs = '\t' + getResizerScript() + '\n';
             responsiveCss = "";
         }
 
-        // comments
-        commentBlock = "<!-- Generated by ai2html v" + scriptVersion + " - " +
-            getDateTimeStamp() + " -->\r" + "<!-- ai file: " + doc.name + " -->\r";
+        // add media query breakpoint css
+        if (isTrue(settings.useMediaQueriesForBreakpoints) && mqCss != null) {
+            responsiveCss = mqCss;
+        }
 
+        if (isTrue(settings.embed_as_iframe)) {
+            textForFile += addIframeHtml("header");
+        }
+
+        if (isTrue(settings.add_headline_source_wrapper)) {
+
+            textForFile += addHeadlineSourceHtml("header");
+
+        }
+
+        // wrap content in a <div> tag
+        textForFile += '<div id="' + containerId + '" class="ai2html">\r';
+
+        textForFile += "\t<!-- Generated by ai2html v" + scriptVersion + " - " + getDateTimeStamp() + " -->\r";
+        textForFile += "\t<!-- ai file: " + doc.name + " -->\r";
         if (scriptEnvironment == "nyt") {
-            commentBlock += "<!-- preview: " + settings.preview_slug + " -->\r";
+            textForFile += "\t<!-- preview: " + settings.preview_slug + " -->\r";
+            textForFile += "\t<!-- scoop  : " + settings.scoop_slug_from_config_yml + " -->\r";
         }
-        if (settings.scoop_slug_from_config_yml) {
-            commentBlock += "<!-- scoop: " + settings.scoop_slug_from_config_yml + " -->\r";
-        }
+        textForFile += generatePageCss(containerId, settings);
 
-        // HTML
-        html = '<div id="' + containerId + '" class="ai2html">\r';
         if (linkSrc) {
             // optional link around content
-            html += "\t<a class='" + nameSpace + "ai2htmlLink' href='" + linkSrc + "'>\r";
+            textForFile += "\t<a class='" + nameSpace + "ai2htmlLink' href='" + linkSrc + "'>\r";
         }
-        html += content.html;
+
+        textForFile += coeFontsCss; // ADD COE FONTS
+        textForFile += responsiveCss;
+        textForFile += pageContent;
+        textForFile += responsiveJs;
+
         if (linkSrc) {
-            html += "\t</a>\r";
-        }
-        html += "\r</div>\r";
-
-        // CSS
-        css = "<style type='text/css' media='screen,print'>\r@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500,700,800');\r" +
-            generatePageCss(containerId, settings) +
-            content.css +
-            "\r</style>\r" + responsiveCss;
-
-        // JS
-        js = content.js + responsiveJs;
-
-        if (scriptEnvironment == "nyt") {
-            html = '<!-- SCOOP HTML -->\r' + commentBlock + html;
-            css = '<!-- SCOOP CSS -->\r' + commentBlock + css;
-            if (js) js = '<!-- SCOOP JS -->\r' + commentBlock + js;
+            textForFile += "\t</a>\r";
         }
 
-        textForFile = css + '\r' + html + '\r' + js;
+        // close <div> wrapper
+        textForFile += "\t<!-- End ai2html" + " - " + getDateTimeStamp() + " -->\r</div>\r";
 
-        if (scriptEnvironment != "nyt") {
-            textForFile = commentBlock + textForFile +
-                "<!-- End ai2html" + " - " + getDateTimeStamp() + " -->\r";
+
+
+        if (isTrue(settings.add_headline_source_wrapper)) {
+
+            textForFile += addHeadlineSourceHtml("footer");
+
+        }
+
+        if (isTrue(settings.embed_as_iframe)) {
+            textForFile += addIframeHtml("footer");
         }
 
         textForFile = applyTemplate(textForFile, settings);
         htmlFileDestinationFolder = docPath + settings.html_output_path;
-        checkForOutputFolder(htmlFileDestinationFolder, "html_output_path");
-        htmlFileDestination = htmlFileDestinationFolder + pageName + settings.html_output_extension;
+        finalFolder = checkForOutputFolder(htmlFileDestinationFolder, "html_output_path");
+        //htmlFileDestination = htmlFileDestinationFolder + pageName + settings.html_output_extension;
+        // force index.html file name for Guardian uploader compatibility
+        htmlFileDestination = htmlFileDestinationFolder + "index" + settings.html_output_extension;
 
         if (settings.output == 'one-file' && previewProjectType == 'ai2html') {
             htmlFileDestination = htmlFileDestinationFolder + "index" + settings.html_output_extension;
@@ -3485,6 +3722,8 @@ var fonts = [
             var previewFileDestination = htmlFileDestinationFolder + pageName + ".preview.html";
             outputLocalPreviewPage(textForFile, previewFileDestination, settings);
         }
+
+        finalFolder.execute(); // Open folder on completion
     }
 } // end main() function definition
 main();
