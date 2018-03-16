@@ -622,6 +622,9 @@ function main() {
         iframeHeaderPartial += "\tmargin:0;\r";
         iframeHeaderPartial += "\t-webkit-font-smoothing:antialiased;\r";
         iframeHeaderPartial += "}\r";
+        iframeHeaderPartial += "p {\r";
+        iframeHeaderPartial += "\tfont-family: 'Open Sans, sans-serif;\r";
+        iframeHeaderPartial += "}\r";
         iframeHeaderPartial += "</style>\r";
 
         iframeHeaderPartial += "</head>\r";
