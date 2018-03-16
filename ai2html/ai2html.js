@@ -143,7 +143,7 @@ function main() {
         summary: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "Summary field for Scoop assets" },
         notes: { defaultValue: "Notes: Text goes here.", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
         sources: { defaultValue: "Source: Name goes here.", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
-        credit: { defaultValue: "By ai2html", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
+        credit: { defaultValue: "By Michigan Engineering", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
         page_template: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         publish_system: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
         environment: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: false, useQuoteMarksInConfigFile: false, inputType: "text", possibleValues: "", notes: "" },
@@ -557,6 +557,7 @@ function main() {
 
         var iframeFooterPartial = "";
         iframeFooterPartial += "<p class='credit'>" + cleanText(docSettings.source) + "</p>\r";
+        iframeFooterPartial += "<p class='credit'>" + cleanText(docSettings.credit) + "</p>\r";
         // iframeFooterPartial = "<script type='text/javascript' src='../../js/resizer-script.js'></script>\r";
         iframeFooterPartial += "<script src='https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js'></script>\r";
         iframeFooterPartial += "</body>\r";
