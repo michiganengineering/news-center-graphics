@@ -632,7 +632,7 @@ function main() {
 
         var iframeFooterPartial = "";
         // iframeFooterPartial = "<script type='text/javascript' src='../../js/resizer-script.js'></script>\r";
-        iframeFooterPartial += "<script src-'https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js'></script>\r";
+        iframeFooterPartial += "<script src='https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js'></script>\r";
         iframeFooterPartial += "</body>\r";
         iframeFooterPartial += "</html>\r";
 
