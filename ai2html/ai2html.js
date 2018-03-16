@@ -621,7 +621,6 @@ function main() {
         iframeHeaderPartial += "\tpadding:0;\r";
         iframeHeaderPartial += "\tmargin:0;\r";
         iframeHeaderPartial += "\t-webkit-font-smoothing:antialiased;\r";
-        iframeHeaderPartial += "\tfont-family: 'Open Sans', serif;\r";
         iframeHeaderPartial += "}\r";
         iframeHeaderPartial += "</style>\r";
 
@@ -629,8 +628,7 @@ function main() {
         iframeHeaderPartial += "<body>\r";
 
         var iframeFooterPartial = "";
-        iframeFooterPartial = "<script type='text/javascript' src='../../js/resizer-script.js'></script>\r";
-        iframeFooterPartial += "<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js'></script>\r";
+        // iframeFooterPartial = "<script type='text/javascript' src='../../js/resizer-script.js'></script>\r";
         iframeFooterPartial += "</body>\r";
         iframeFooterPartial += "</html>\r";
 
