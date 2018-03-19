@@ -1,0 +1,56 @@
+2017
+Total employed	Percent of total employed
+                Women	White	Black or African American	Asian	Hispanic or Latino
+
+
+Aerospace engineers
+148             8.9   	79.1   8.1 	                        11.4	5.5
+
+
+Biomedical engineers
+17              -	-	-	-	-
+
+Chemical engineers
+77              16.9	91.0   1.7                           7.0	4.1
+
+Civil engineers
+461             14.4	82.5	6.4	7.1	10.7
+
+Computer hardware engineers
+80              17.2	55.4	5.8	38.3	7.8
+
+Electrical and electronics engineers
+284             12.3	74.6	3.5	19.5	9.0
+
+Environmental engineers
+38              -	-	-	-	-
+
+Industrial engineers, including health and safety
+221             22.6	80.8	5.3	11.6	6.2
+
+Marine engineers and naval architects
+12              -	-	-	-	-
+
+Materials engineers
+32              -	-	-	-	-
+
+Mechanical engineers
+344             9.2	84.2	3.6	11.1	6.0
+
+Mining and geological engineers, including mining safety engineers
+11              -	-	-	-	-
+
+Nuclear engineers
+8               -	-	-	-	-
+
+Petroleum engineers
+24              -	-	-	-	-
+
+Engineers, all other
+582             14.1	73.1	6.9	17.8	9.4
+
+Total employed	Percent of total employed
+                Women	White	Black or African American	Asian	Hispanic or Latino
+
+
+source: Labor Force Statistics from the Current Population Survey // https://www.bls.gov/cps/cpsaat11.htm
