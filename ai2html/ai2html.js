@@ -342,7 +342,7 @@ function main() {
         add_headline_source_wrapper: { defaultValue: "no", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: false, inputType: "yesNo", possibleValues: "", notes: "Set this to “yes” if you want to automatically add a headline, source etc in the standard graphics style. This will be created from the following headline, standfirst, source_left and source_right values" },
         headline: { defaultValue: "Replace this text", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
         standfirst: { defaultValue: "", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
-        source: { defaultValue: "Michigan Engineering graphic  |  Source: insert source here", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
+        source: { defaultValue: "", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
         summary: { defaultValue: "", includeInSettingsBlock: false, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "Summary field for Scoop assets" },
         notes: { defaultValue: "Notes: Text goes here.", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
         credit: { defaultValue: "By ai2html", includeInSettingsBlock: true, includeInConfigFile: true, useQuoteMarksInConfigFile: true, inputType: "text", possibleValues: "", notes: "" },
@@ -556,7 +556,9 @@ function main() {
         iframeHeaderPartial += "<body>\r";
 
         var iframeFooterPartial = "";
-        iframeFooterPartial += "<p class='credit'>" + cleanText(docSettings.source) + "</p>\r";
+        if (docSettings.source != "" && docSettings.source != " ") {
+            iframeFooterPartial += "<p class='credit'>" + cleanText(docSettings.source) + "</p>\r";
+        }
         iframeFooterPartial += "<p class='credit'>" + cleanText(docSettings.credit) + "</p>\r";
         // iframeFooterPartial = "<script type='text/javascript' src='../../js/resizer-script.js'></script>\r";
         iframeFooterPartial += "<script src='https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js'></script>\r";
