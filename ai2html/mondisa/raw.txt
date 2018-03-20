@@ -52,5 +52,7 @@ Engineers, all other
 Total employed	Percent of total employed
                 Women	White	Black or African American	Asian	Hispanic or Latino
 
+2,339
+
 
 source: Labor Force Statistics from the Current Population Survey // https://www.bls.gov/cps/cpsaat11.htm
